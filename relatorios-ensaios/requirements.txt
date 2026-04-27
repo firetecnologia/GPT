@@ -1,0 +1,8 @@
+streamlit
+python-docx
+docxtpl
+pillow
+pandas
+sqlalchemy
+passlib[bcrypt]
+python-dotenv
