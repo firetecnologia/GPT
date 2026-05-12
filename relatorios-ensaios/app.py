@@ -6,6 +6,7 @@ import streamlit as st
 
 from modules.auth import authenticate, ensure_default_admin
 from modules.database import init_db
+from pages.calculadora_estrutural import render_calculadora_estrutural
 from pages.clientes import render_clientes
 from pages.configuracoes import render_configuracoes
 from pages.dashboard import render_dashboard
@@ -30,8 +31,8 @@ if "logged_in" not in st.session_state:
 if not st.session_state.logged_in:
     st.title("Login")
     with st.form("login_form"):
-        email = st.text_input("E-mail", value="admin@empresa.com")
-        password = st.text_input("Senha", type="password", value="admin123")
+        email = st.text_input("E-mail", value="firetecnologia@gmail.com")
+        password = st.text_input("Senha", type="password", value="1234")
         submitted = st.form_submit_button("Entrar")
         if submitted:
             if authenticate(email, password):
@@ -55,6 +56,7 @@ menu = st.sidebar.radio(
         "Tipos de ensaio",
         "Equipamentos",
         "Responsáveis técnicos",
+        "Calculadora estrutural",
         "Configurações",
     ],
 )
@@ -77,5 +79,7 @@ elif menu == "Equipamentos":
     render_equipamentos()
 elif menu == "Responsáveis técnicos":
     render_responsaveis()
+elif menu == "Calculadora estrutural":
+    render_calculadora_estrutural()
 elif menu == "Configurações":
     render_configuracoes()
