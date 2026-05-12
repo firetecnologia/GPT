@@ -6,3 +6,4 @@ pandas
 sqlalchemy
 passlib[bcrypt]
 python-dotenv
+pypdf

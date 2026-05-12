@@ -12,7 +12,7 @@ def ensure_default_admin() -> None:
         return
     execute(
         "INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, 'admin')",
-        ("Administrador", "admin@empresa.com", pwd_context.hash("admin123")),
+        ("Administrador", "firetecnologia@gmail.com", pwd_context.hash("1234")),
     )
 
 
@@ -21,3 +21,15 @@ def authenticate(email: str, password: str) -> bool:
     if not user:
         return False
     return pwd_context.verify(password, user[0]["password_hash"])
+
+
+
+def create_user(name: str, email: str, password: str, role: str = "user") -> None:
+    execute(
+        "INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)",
+        (name, email, pwd_context.hash(password), role),
+    )
+
+
+def list_users() -> list[dict]:
+    return rows("SELECT id, name, email, role, created_at FROM users ORDER BY id DESC")
